@@ -14,7 +14,7 @@ def browser(request):
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
     browser = webdriver.Chrome(options=options)
-    link = f"http://selenium1py.pythonanywhere.com/{user_language}/catalogue/coders-at-work_207/"
+    link = f"http://selenium1py.pythonanywhere.com/{user_language}/"
     browser.get(link)
     browser.maximize_window()
     time.sleep(3)
