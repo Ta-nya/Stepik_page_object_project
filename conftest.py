@@ -17,7 +17,7 @@ def browser(request):
     link = f"http://selenium1py.pythonanywhere.com/{user_language}/"
     browser.get(link)
     browser.maximize_window()
-    time.sleep(3)
+    time.sleep(1)
     yield browser
     print("\nquit browser..")
     browser.quit()

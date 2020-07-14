@@ -18,3 +18,11 @@ class LoginPageLocators():
 
     PASSWORD_RESET = (By.CSS_SELECTOR, "#login_form p a")
 
+class ProductPageLocators():
+    BTN_ADD_TO_BASKET = (By.CSS_SELECTOR, ".btn-add-to-basket")
+    MESSAGE_SUCCESS_ADD_TO_BASKET = (By.CSS_SELECTOR, "#messages div div strong")
+    MESSAGE_PRICE_OF_BASKET = (By.CSS_SELECTOR, "#messages div div p strong")
+    PRODUCT_TITLE = (By.CSS_SELECTOR, "div.product_main h1")
+    PRODUCT_PRICE = (By.CSS_SELECTOR, "div.product_main p[class=\"price_color\"]")
+    # PRODUCT_PRICE = (By.CSS_SELECTOR, "div.product_main p")
+
