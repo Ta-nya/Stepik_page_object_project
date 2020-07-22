@@ -13,9 +13,17 @@ class BasePage():
         self.url = url
         self.browser.implicitly_wait(timeout)
 
+    def find_element(self, how, what):
+        element = self.browser.find_element(how, what)
+        return element
+
     def get_element_text(self, how, what):
         element = self.browser.find_element(how, what)
         return element.text
+
+    def go_to_basket_page(self):
+        link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        link.click()
 
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
@@ -36,7 +44,21 @@ class BasePage():
             return False
         return True
 
+    def is_elements_present(self, how, what):
+        try:
+            self.browser.find_elements(how, what)
+        except (NoSuchElementException):
+            return False
+        return True
+
     def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+        return False
+
+    def is_not_elements_present(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
@@ -45,6 +67,10 @@ class BasePage():
 
     def open(self):
         self.browser.get(self.url)
+
+    def should_be_authorized_user(self):
+        assert self.find_element(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"

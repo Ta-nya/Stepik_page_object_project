@@ -3,6 +3,12 @@ from selenium.webdriver.common.by import By
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BASKET_LINK = (By.CSS_SELECTOR, "#default span a.btn.btn-default")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+
+class BasketPageLocators():
+    MESSAGE_BASKET_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner p")
+    PRODUCT_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset div div.row")
 
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
@@ -20,6 +26,7 @@ class LoginPageLocators():
     REGISTER_SUBMIT = (By.NAME, "login_submit")
 
     PASSWORD_RESET = (By.CSS_SELECTOR, "#login_form p a")
+    REGISTER_MESSAGES = (By.CSS_SELECTOR, '#messages div div')
 
 class ProductPageLocators():
     BTN_ADD_TO_BASKET = (By.CSS_SELECTOR, ".btn-add-to-basket")
