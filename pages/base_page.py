@@ -1,4 +1,5 @@
 from selenium.webdriver.support import expected_conditions as EC
+
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
@@ -13,9 +14,12 @@ class BasePage():
         self.url = url
         self.browser.implicitly_wait(timeout)
 
-    def find_element(self, how, what):
-        element = self.browser.find_element(how, what)
-        return element
+    def find_element_on_page(self, how, what):
+        try:
+            element = self.browser.find_element(how, what)
+            return element
+        except NoSuchElementException:
+            raise AssertionError(f'Element not found')
 
     def get_element_text(self, how, what):
         element = self.browser.find_element(how, what)
@@ -69,7 +73,7 @@ class BasePage():
         self.browser.get(self.url)
 
     def should_be_authorized_user(self):
-        assert self.find_element(*BasePageLocators.USER_ICON), "User icon is not presented," \
+        assert self.find_element_on_page(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                      " probably unauthorised user"
 
     def should_be_login_link(self):

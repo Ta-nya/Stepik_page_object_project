@@ -23,7 +23,7 @@ class LoginPageLocators():
     REGISTRATION_EMAIL = (By.CSS_SELECTOR, "#id_registration-email")
     REGISTRATION_PASSWORD1 = (By.CSS_SELECTOR, "#id_registration-password1")
     REGISTRATION_PASSWORD2 = (By.CSS_SELECTOR, "#id_registration-password2")
-    REGISTER_SUBMIT = (By.NAME, "login_submit")
+    REGISTER_SUBMIT = (By.NAME, "registration_submit")
 
     PASSWORD_RESET = (By.CSS_SELECTOR, "#login_form p a")
     REGISTER_MESSAGES = (By.CSS_SELECTOR, '#messages div div')

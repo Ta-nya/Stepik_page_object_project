@@ -5,11 +5,10 @@ from .locators import LoginPageLocators
 class LoginPage(BasePage):
 
     def register_new_user(self, email, password):
-        self.implicitly_wait(15)
-        self.find_element(*LoginPageLocators.REGISTRATION_EMAIL).send_keys(email)
-        self.find_element(*LoginPageLocators.REGISTRATION_PASSWORD1).send_keys(password)
-        self.find_element(*LoginPageLocators.REGISTRATION_PASSWORD2).send_keys(password)
-        self.find_element(*LoginPageLocators.REGISTER_SUBMIT).click()
+        self.find_element_on_page(*LoginPageLocators.REGISTRATION_EMAIL).send_keys(email)
+        self.find_element_on_page(*LoginPageLocators.REGISTRATION_PASSWORD1).send_keys(password)
+        self.find_element_on_page(*LoginPageLocators.REGISTRATION_PASSWORD2).send_keys(password)
+        self.find_element_on_page(*LoginPageLocators.REGISTER_SUBMIT).click()
 
         assert self.is_element_present(*LoginPageLocators.REGISTER_MESSAGES), "There is no registration massage!"
 
