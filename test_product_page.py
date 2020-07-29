@@ -71,32 +71,33 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page.basket_should_be_empty()
     basket_page.message_basket_is_empty()
 
+
 @pytest.mark.users_tests
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
         login_link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
-        self.login_page = LoginPage(browser, login_link)
+        login_page = LoginPage(browser, login_link)
+        login_page.open()
         current_time = int(round(time.time() * 1000))
         username = f"test1+{current_time}@gmail.com"
         password = "R0ZPg2A6c"
-        self.login_page.register_new_user(username, password)
-        self.login_page.should_be_authorized_user()
+        login_page.register_new_user(username, password)
+        login_page.should_be_authorized_user()
 
+    product_link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 
-    def test_user_cant_see_success_message(browser):
+    def test_user_cant_see_success_message(self, browser):
         product_page = ProductPage(browser, product_link)
         product_page.open()
         product_page.should_not_be_success_message()
 
     @pytest.mark.need_review
-    def test_user_can_add_product_to_basket(browser, product_link):
+    def test_user_can_add_product_to_basket(self, browser):
         product_page = ProductPage(browser, product_link)
         product_page.open()
         product_page.add_product_to_basket()
-        product_page.solve_quiz_and_get_code()
         product_page.check_added_product_price()
         product_page.check_added_product_title()
         time.sleep(1)
-
 
